@@ -1,0 +1,25 @@
+{%  load staticfiles %}
+<html>
+  <head>
+    <title>Google recapcha demo - Codeforgeek</title>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <h1>Google reCAPTHA Demo</h1>
+    <form action = "{% url 'googleconfirm' %}" method="post"> {% csrf_token %}
+      <input type="text" placeholder="Name" size="40"><br><br>
+      <input type="submit" name="submit" value="Post comment"><br><br>
+      <div class="g-recaptcha" data-sitekey="6LeNEYAUAAAAAAmYs8CHJyd2jbptgrxCmFFyzxc5"></div>
+    </form>
+  </body>
+    <script>
+       $("form").submit(function(event) {
+           var recaptcha = $("#g-recaptcha-response").val();
+           if (recaptcha === "") {
+              event.preventDefault();
+              alert("Please check the recaptcha");
+           }
+        });
+    </script>
+</html>
